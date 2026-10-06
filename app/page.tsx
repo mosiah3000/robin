@@ -4,27 +4,28 @@ import { CatalogGrid } from "@/components/CatalogGrid";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#0d0e11] text-zinc-100 selection:bg-[#d90429] selection:text-white">
-      {/* Barra superior de marca estilo Donde Robin */}
-      <div className="bg-[#d90429] text-white text-[11px] font-black uppercase tracking-widest py-1.5 px-4 text-center">
+    <div className="flex flex-col min-h-screen bg-[#090a0d] text-zinc-100 selection:bg-[#d90429] selection:text-white">
+      {/* Barra superior de marca */}
+      <div className="bg-[#d90429] text-white text-xs sm:text-sm font-black uppercase tracking-widest py-2 px-4 text-center shadow-md">
         🔥 UNA COSA ES UN SÁNDWICH, OTRA COSA ES UN SÁNDWICH A LA PLANCHA DONDE ROBIN 🔥
       </div>
 
       {/* Header / Navbar */}
-      <header className="sticky top-0 z-40 bg-[#111216]/95 backdrop-blur-md border-b border-zinc-800">
+      <header className="sticky top-0 z-40 bg-[#0d0e11]/95 backdrop-blur-md border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#006837] shadow-lg shrink-0">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#006837] shadow-lg shrink-0 bg-white">
               <Image
                 src="/images/logo.png"
                 alt="Logo Sandwichería Donde Robin"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
+                unoptimized
               />
             </div>
             <div>
-              <h1 className="text-base sm:text-lg font-black tracking-tight text-white uppercase leading-tight">
+              <h1 className="text-sm sm:text-lg font-black tracking-tight text-white uppercase leading-tight">
                 {catalogData.storeName}
               </h1>
               <p className="text-[11px] text-zinc-400 hidden sm:flex items-center gap-1">
@@ -37,96 +38,110 @@ export default function Home() {
             href={`https://wa.me/${catalogData.whatsappNumber.replace(/\D/g, "")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#006837] hover:bg-[#008f4c] text-white text-xs sm:text-sm font-black uppercase tracking-wider shadow-lg shadow-emerald-950/40 transition transform active:scale-95"
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl bg-[#006837] hover:bg-[#008f4c] text-white text-xs sm:text-sm font-black uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition transform active:scale-95"
           >
-            <span>📱 PEDIR POR WHATSAPP</span>
+            <span>📱 Pedir por WhatsApp</span>
           </a>
         </div>
       </header>
 
-      {/* Hero Section inspirado en la portada del PDF */}
-      <section className="relative overflow-hidden bg-[#0d0e11] border-b border-zinc-800 py-12 sm:py-16">
+      {/* Portada Principal del Catálogo (Estilo Portada PDF) */}
+      <section className="relative overflow-hidden bg-[#0d0e11] border-b-2 border-zinc-800 py-12 sm:py-20">
         {/* Franja verde lateral decorativa idéntica a la portada del PDF */}
-        <div className="absolute right-0 top-0 bottom-0 w-3 sm:w-5 bg-[#006837]" />
+        <div className="absolute right-0 top-0 bottom-0 w-3 sm:w-6 bg-[#006837]" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Texto y Titular */}
-            <div className="lg:col-span-7 space-y-4 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-[#d90429] animate-pulse" />
-                HECHO AL MOMENTO • A LA PLANCHA
-              </div>
-
-              <div>
-                <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase leading-none">
-                  CATÁLOGO <br />
-                  <span className="text-white">DE SÁNDWICHES</span>
-                </h2>
-                {/* Línea roja característica del PDF */}
-                <div className="w-24 h-1.5 bg-[#d90429] mt-3 mx-auto lg:mx-0 rounded-full" />
-              </div>
-
-              <p className="text-base sm:text-lg text-zinc-300 max-w-xl font-medium pt-2">
-                &ldquo;{catalogData.slogan}&rdquo;
-              </p>
-
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-lg">
-                📍 {catalogData.address} • Elige tu sándwich favorito, personaliza tus aderezos y pídelo directo a nuestra plancha.
-              </p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col items-center text-center space-y-6">
+            {/* Logo Oficial Donde Robin Central */}
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 drop-shadow-[0_20px_60px_rgba(0,104,55,0.4)] animate-fade-in hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/images/logo.png"
+                alt="Logo Oficial Sandwichería Donde Robin"
+                fill
+                className="object-contain"
+                priority
+                unoptimized
+              />
             </div>
 
-            {/* Logo de Robin Gigante */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-56 h-56 sm:w-72 sm:h-72 drop-shadow-[0_20px_50px_rgba(0,104,55,0.3)] animate-fade-in transform hover:scale-105 transition-transform duration-300">
-                <Image
-                  src="/images/logo.png"
-                  alt="Sandwichería Donde Robin"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
+            {/* Titular Oficial del Catálogo */}
+            <div className="space-y-2">
+              <h2 className="text-4xl sm:text-7xl font-black text-white tracking-tight uppercase leading-none">
+                CATÁLOGO <br />
+                <span className="text-white">DE SÁNDWICHES</span>
+              </h2>
+              {/* Línea roja característica del PDF */}
+              <div className="w-28 h-2 bg-[#d90429] mx-auto rounded-full mt-3" />
+            </div>
+
+            {/* Slogan */}
+            <p className="text-base sm:text-2xl font-bold text-zinc-200 max-w-2xl leading-snug">
+              &ldquo;{catalogData.slogan}&rdquo;
+            </p>
+
+            {/* Ubicación y detalles */}
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs sm:text-sm font-bold text-emerald-400">
+              <span className="bg-[#141519] border border-zinc-800 px-4 py-2 rounded-full">
+                📍 {catalogData.address}
+              </span>
+              <span className="bg-[#141519] border border-zinc-800 px-4 py-2 rounded-full">
+                🔥 Sándwiches a la plancha preparados al momento
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Catalog Grid */}
-      <main className="flex-grow py-8">
+      {/* Contenedor Vertical de Hojas del Catálogo (Exacto orden del PDF) */}
+      <main className="flex-grow py-10 sm:py-16">
+        <div className="max-w-4xl mx-auto px-4 mb-6 text-center">
+          <span className="text-xs font-black uppercase tracking-widest text-[#d90429]">
+            MENÚ COMPLETO • DESLIZA HACIA ABAJO
+          </span>
+        </div>
+
         <CatalogGrid catalog={catalogData} />
       </main>
 
-      {/* Footer inspirado en la contraportada del PDF */}
-      <footer className="mt-auto border-t border-zinc-800 bg-[#111216] py-12 relative">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#d90429] via-[#006837] to-[#d90429]" />
+      {/* Contraportada / Footer estilo PDF */}
+      <footer className="mt-auto border-t-2 border-zinc-800 bg-[#0d0e11] py-14 relative">
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#d90429] via-[#006837] to-[#d90429]" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="flex items-center justify-center gap-3">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#006837] shrink-0">
-              <Image
-                src="/images/logo.png"
-                alt="Logo Donde Robin"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <span className="font-black text-lg text-white uppercase tracking-wider">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
+          <div className="relative w-24 h-24 mx-auto">
+            <Image
+              src="/images/logo.png"
+              alt="Logo Donde Robin"
+              fill
+              className="object-contain"
+              unoptimized
+            />
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              ¡TE ESPERAMOS!
+            </h3>
+            <p className="text-base font-bold text-emerald-400">
+              Haz tu pedido directamente en nuestra sandwichería
+            </p>
+          </div>
+
+          <div className="bg-[#141519] border border-zinc-800 p-6 rounded-3xl max-w-md mx-auto space-y-3">
+            <p className="font-extrabold text-white text-base">
               {catalogData.storeName}
-            </span>
+            </p>
+            <p className="text-sm text-zinc-300">
+              📍 {catalogData.address}
+            </p>
+            <p className="text-sm text-emerald-400 font-bold">
+              📱 Pedidos WhatsApp: +57 314 440 2740
+            </p>
           </div>
 
-          <p className="text-sm font-bold text-emerald-400">
-            ¡TE ESPERAMOS! Haz tu pedido directamente en nuestra sandwichería
-          </p>
-
-          <p className="text-xs text-zinc-400 max-w-md mx-auto">
-            📍 {catalogData.address} • 📱 Pedidos WhatsApp: +57 314 440 2740
-          </p>
-
-          <div className="pt-4 border-t border-zinc-800/80 text-[11px] text-zinc-500">
+          <p className="text-xs text-zinc-500 pt-4">
             © 2026 {catalogData.storeName} — Todos los derechos reservados.
-          </div>
+          </p>
         </div>
       </footer>
     </div>
