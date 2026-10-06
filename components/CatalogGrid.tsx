@@ -18,12 +18,20 @@ export const CatalogGrid: React.FC<CatalogGridProps> = ({ catalog }) => {
 
     const q = searchQuery.toLowerCase();
     return catalog.products.filter((p) => {
+      const matchName = p.name.toLowerCase().includes(q);
+      const matchSubtitle = p.subtitle ? p.subtitle.toLowerCase().includes(q) : false;
+      const matchDesc = p.description.toLowerCase().includes(q);
+      const matchPortion = p.portion ? p.portion.toLowerCase().includes(q) : false;
+      const matchIngredients = p.ingredients.some((i) => i.toLowerCase().includes(q));
+      const matchDressings = p.dressings ? p.dressings.some((d) => d.toLowerCase().includes(q)) : false;
+
       return (
-        p.name.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q) ||
-        (p.portion && p.portion.toLowerCase().includes(q)) ||
-        p.ingredients.some((i) => i.toLowerCase().includes(q)) ||
-        p.dressings.some((d) => d.toLowerCase().includes(q))
+        matchName ||
+        matchSubtitle ||
+        matchDesc ||
+        matchPortion ||
+        matchIngredients ||
+        matchDressings
       );
     });
   }, [catalog.products, searchQuery]);
