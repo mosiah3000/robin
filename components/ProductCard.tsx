@@ -16,12 +16,33 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div
+    <article
       onClick={() => onSelect(product)}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#18191e] border border-zinc-800/90 shadow-xl hover:border-emerald-600/60 hover:shadow-2xl hover:shadow-emerald-950/30 transition-all duration-300 cursor-pointer transform hover:-translate-y-1.5"
     >
-      {/* Imagen & Badges */}
-      <div className="relative w-full h-56 bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
+      {/* Barra superior estilo PDF */}
+      <div className="relative bg-[#0d0e11] border-b border-zinc-800 flex items-center justify-between overflow-hidden">
+        <div className="flex items-center">
+          {/* Bloque Rojo con Número */}
+          <div className="bg-[#d90429] text-white font-black text-sm px-3.5 py-1.5 flex items-center justify-center tracking-wider">
+            {product.id}
+          </div>
+          <span className="text-[11px] font-extrabold uppercase tracking-widest text-zinc-400 pl-3">
+            SANDWICHERÍA DONDE ROBIN
+          </span>
+        </div>
+
+        {/* Watermark de Número en la esquina */}
+        <div className="absolute right-2 -top-3 text-5xl font-black text-zinc-800/40 select-none pointer-events-none tracking-tighter">
+          {product.id}
+        </div>
+      </div>
+
+      {/* Imagen con franja roja lateral estilo PDF */}
+      <div className="relative w-full h-56 bg-zinc-950 overflow-hidden">
+        {/* Línea roja lateral característica del catálogo PDF */}
+        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#d90429] z-10" />
+
         {!imageError ? (
           <Image
             src={product.image}
@@ -32,51 +53,54 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-amber-50 to-orange-100 dark:from-zinc-800 dark:to-zinc-900 text-amber-700 dark:text-amber-400 p-4 text-center">
+          <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-900 text-amber-500 p-4 text-center">
             <span className="text-5xl mb-2">🥪</span>
-            <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
+            <span className="text-xs font-semibold text-zinc-300">
               {product.name}
             </span>
           </div>
         )}
 
-        {/* Badge superior */}
+        {/* Badge Especial */}
         {product.badge && (
-          <div className="absolute top-3 left-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+          <div className="absolute top-3 right-3 bg-[#006837] text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md border border-emerald-400/30">
             {product.badge}
-          </div>
-        )}
-
-        {/* Porción chip */}
-        {product.portion && (
-          <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full shadow-sm">
-            🥩 {product.portion}
           </div>
         )}
       </div>
 
-      {/* Contenido */}
+      {/* Cuerpo del Contenido */}
       <div className="p-5 flex flex-col flex-grow justify-between">
         <div>
-          <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors mb-2">
+          {/* Título del Sándwich */}
+          <h3 className="font-extrabold text-xl text-white group-hover:text-emerald-400 transition-colors leading-tight mb-2">
             {product.name}
           </h3>
 
-          <p className="text-zinc-600 dark:text-zinc-300 text-sm leading-relaxed mb-4 line-clamp-3">
-            {product.description}
-          </p>
+          {/* Línea verde separadora como en el PDF */}
+          <div className="w-12 h-1 bg-[#006837] rounded-full mb-4 group-hover:w-20 transition-all duration-300" />
 
-          {/* Aderezos destacados */}
-          {product.dressings && product.dressings.length > 0 && (
-            <div className="mb-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 block mb-1">
-                Aderezos incluidos:
+          {/* Sección INGREDIENTES */}
+          <div className="mb-3">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <span className="w-2.5 h-0.5 bg-[#d90429]" />
+              <span className="text-xs font-black uppercase tracking-wider text-emerald-400">
+                INGREDIENTES
               </span>
+            </div>
+            <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed font-normal">
+              {product.ingredients.join(", ")}.
+            </p>
+          </div>
+
+          {/* Aderezos */}
+          {product.dressings && product.dressings.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-zinc-800/80">
               <div className="flex flex-wrap gap-1.5">
                 {product.dressings.map((dressing, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200/60 dark:border-amber-900/50 px-2 py-0.5 rounded-md font-medium"
+                    className="text-[11px] font-medium bg-[#006837]/20 text-emerald-300 border border-emerald-800/50 px-2 py-0.5 rounded-md"
                   >
                     ✨ {dressing}
                   </span>
@@ -86,17 +110,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </div>
 
-        {/* Footer / Botón */}
-        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-          <span className="text-xs text-zinc-500 dark:text-zinc-400">
-            {product.ingredients.length} ingredientes
+        {/* Pie de la tarjeta estilo PDF */}
+        <div className="pt-4 mt-4 border-t border-zinc-800 flex items-center justify-between text-[11px]">
+          <span className="font-extrabold text-emerald-400 uppercase tracking-wider">
+            HECHO AL MOMENTO
           </span>
-
-          <span className="text-xs font-bold text-amber-600 dark:text-amber-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-            Ver detalle y pedir →
+          <span className="text-zinc-400 italic">
+            Personaliza tus aderezos
           </span>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
