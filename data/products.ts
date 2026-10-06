@@ -23,7 +23,7 @@ export const catalogData: CatalogData = {
   tagline: "Sándwiches a la plancha, preparados al momento",
   slogan: "Una Cosa es un sandwich, otra cosa es un Sandwich a la plancha Donde Robin",
   address: "Cl. 65j Sur #77K18, Bogotá",
-  whatsappNumber: "573144402740",
+  whatsappNumber: "573144402140",
   products: [
     {
       id: "01",

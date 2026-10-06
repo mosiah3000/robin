@@ -135,7 +135,7 @@ export default function Home() {
               📍 {catalogData.address}
             </p>
             <p className="text-sm text-emerald-400 font-bold">
-              📱 Pedidos WhatsApp: +57 314 440 2740
+              📱 Pedidos WhatsApp: +57 314 440 2140
             </p>
           </div>
 
